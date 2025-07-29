@@ -8,9 +8,9 @@
 #if canImport(UIKit)
 import UIKit
 
-@MainActor
+
 public final class DeviceUtils:NSObject {
-    public static let shared = DeviceUtils()
+    @MainActor public static let shared = DeviceUtils()
 
     /// 获取设备宽
     public var screenWidth:CGFloat {
@@ -25,7 +25,7 @@ public final class DeviceUtils:NSObject {
     /// 状态栏高度
     public var statusBarHeight:CGFloat{
         if #available(iOS 13.0, *) {
-            return keyWindow.windowScene!.statusBarManager!.statusBarFrame.height
+            return UIApplication.shared.currentKeyWindow!.windowScene!.statusBarManager!.statusBarFrame.height
         } else {
            return UIApplication.shared.statusBarFrame.height
         };
@@ -59,18 +59,6 @@ public final class DeviceUtils:NSObject {
     public var isIphoneX:Bool{
         return statusBarHeight > 20 && isIpad == false ? true : false;
     }
-    
-    /// 获取window
-    public let keyWindow:UIWindow = {
-        var window:UIWindow!
-//        if #available(iOS 13.0, *) {
-//            window = UIApplication.shared.windows.filter({ $0.isKeyWindow }).last!
-//        }else{
-//            window = UIApplication.shared.keyWindow!;
-//        }
-        window = UIApplication.shared.delegate?.window!
-        return window
-    }()
     
     /// appstore 版本号
     public var appStoreVersion:String = ""
@@ -146,4 +134,21 @@ public final class DeviceUtils:NSObject {
         case invalidResponse
     }
 }
+
+
+extension UIApplication {
+    public var currentKeyWindow: UIWindow? {
+        if #available(iOS 13.0, *) {
+            return connectedScenes
+                .filter { $0.activationState == .foregroundActive }
+                .first(where: { $0 is UIWindowScene })
+                .flatMap { $0 as? UIWindowScene }?
+                .windows
+                .first(where: \.isKeyWindow)
+        } else {
+            return keyWindow
+        }
+    }
+}
+
 #endif

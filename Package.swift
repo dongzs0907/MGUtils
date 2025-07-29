@@ -17,9 +17,11 @@ let package = Package(
         // Targets can depend on other targets in this package and products from dependencies.
         .target(
             name: "MGUtils",
+            resources: [.process("Resources")
+            ],
             linkerSettings: [
                 .linkedFramework("UIKit", .when(platforms: [.iOS])) // 关键：显式链接 UIKit[3,5](@ref)
-            ]
+            ],
         ),
         
         .testTarget(

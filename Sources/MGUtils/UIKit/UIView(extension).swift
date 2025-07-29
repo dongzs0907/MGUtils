@@ -132,18 +132,6 @@ extension UIView{
     
 }
 
-public extension UIButton {
-    /// 设置字体
-//    public var font: UIFont? {
-//        get{
-//            return self.titleLabel?.font;
-//        }
-//        set{
-//            self.titleLabel?.font = newValue ?? UIFont.systemFont(ofSize: 16, weight: .regular);
-//        }
-//    }
-}
-
 
 
 
@@ -209,35 +197,6 @@ public extension UIView {
         return nil
     }
     
-    // SwifterSwift: Height of view.
-    //        public var height: CGFloat {
-    //            get {
-    //                return frame.size.height
-    //            }
-    //            set {
-    //                frame.size.height = newValue
-    //            }
-    //        }
-    
-    /// SwifterSwift: Check if view is in RTL format.
-    var isRightToLeft: Bool {
-        if #available(iOS 10.0, *, tvOS 10.0, *) {
-            return effectiveUserInterfaceLayoutDirection == .rightToLeft
-        } else {
-            return false
-        }
-    }
-    
-    /// SwifterSwift: Take screenshot of view (if applicable).
-    var screenshot: UIImage? {
-        UIGraphicsBeginImageContextWithOptions(layer.frame.size, false, 0)
-        defer {
-            UIGraphicsEndImageContext()
-        }
-        guard let context = UIGraphicsGetCurrentContext() else { return nil }
-        layer.render(in: context)
-        return UIGraphicsGetImageFromCurrentImageContext()
-    }
     
     /// SwifterSwift: Shadow color of view; also inspectable from Storyboard.
     @IBInspectable var shadowColor: UIColor? {

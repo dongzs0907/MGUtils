@@ -10,11 +10,11 @@ import QuartzCore
 extension CALayer {
     
     // MARK: - 呼吸动画
-    public func beginBreathingAnimation() {
+    public func beginBreathingAnimation(_ fromValue:Float = 1.0, _ toValue:Float = 0.5, _ duration:Double = 1.0) {
         let opacityAnimation = CABasicAnimation(keyPath: "opacity")
-        opacityAnimation.fromValue = 1.0
-        opacityAnimation.toValue = 0.5
-        opacityAnimation.duration = 1.0
+        opacityAnimation.fromValue = fromValue
+        opacityAnimation.toValue = toValue
+        opacityAnimation.duration = duration
         opacityAnimation.autoreverses = true
         opacityAnimation.repeatCount = .infinity
         opacityAnimation.fillMode = .both

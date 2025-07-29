@@ -72,7 +72,7 @@ public class Toast:MBProgressHUD{
         
         let hud = MBProgressHUD.showHUDAddedTo(toView, animated: true)
         hud.detailsLabel.text = title;
-        hud.customView = UIImageView.init(image: .init(named: iconName))
+        hud.customView = UIImageView.init(image: UIImage(named: iconName, in: Bundle.module, compatibleWith: nil))
         hud.mode = .customView;
         hud.detailsLabel.font = hud.label.font;
         hud.removeFromSuperViewOnHide = true;
