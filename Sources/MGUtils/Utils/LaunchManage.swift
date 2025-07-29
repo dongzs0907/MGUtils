@@ -5,7 +5,7 @@
 //  Created by ZhenShan Dong on 2021/6/18.
 //  Copyright © 2021 HongYeGroup. All rights reserved.
 //
-
+#if canImport(UIKit)
 import Foundation
 
 public class LaunchManage:NSObject {
@@ -45,3 +45,4 @@ public class LaunchManage:NSObject {
     
     
 }
+#endif
