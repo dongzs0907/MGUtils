@@ -10,7 +10,7 @@ import QuartzCore
 extension CALayer {
     
     // MARK: - 呼吸动画
-    func beginBreathingAnimation() {
+    public func beginBreathingAnimation() {
         let opacityAnimation = CABasicAnimation(keyPath: "opacity")
         opacityAnimation.fromValue = 1.0
         opacityAnimation.toValue = 0.5
@@ -28,7 +28,7 @@ extension CALayer {
     }
     
     // MARK: - 心跳动画
-    func beginHeartbeatAnimation() {
+    public func beginHeartbeatAnimation() {
         let scaleAnimation = CABasicAnimation(keyPath: "transform.scale")
         scaleAnimation.fromValue = 1.0
         scaleAnimation.toValue = 1.03
@@ -41,12 +41,12 @@ extension CALayer {
         self.add(scaleAnimation, forKey: "heartbeatAnimation")
     }
     
-    func removeHeartbeatAnimation() {
+    public func removeHeartbeatAnimation() {
         self.removeAnimation(forKey: "heartbeatAnimation")
     }
     
     // MARK: - 弹跳动画
-    func beginBounceAnimation(positionY: CGFloat, range: CGFloat) {
+    public func beginBounceAnimation(positionY: CGFloat, range: CGFloat) {
         let positionAnimation = CABasicAnimation(keyPath: "position.y")
         positionAnimation.fromValue = positionY - range
         positionAnimation.toValue = positionY + range
@@ -59,7 +59,7 @@ extension CALayer {
         self.add(positionAnimation, forKey: "bounceAnimation")
     }
     
-    func removeBounceAnimation() {
+    public func removeBounceAnimation() {
         self.removeAnimation(forKey: "bounceAnimation")
     }
 }

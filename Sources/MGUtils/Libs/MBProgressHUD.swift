@@ -4,7 +4,7 @@
 //  Swift version of MBProgressHUD
 //  Complete implementation in a single file
 //
-#if canImport(UIKit)
+
 import UIKit
 import CoreGraphics
 
@@ -72,7 +72,7 @@ public class MBProgressHUD: UIView {
     
     public var contentColor: UIColor? {
         didSet {
-            if let color = contentColor {
+            if let color = contentColor, label != nil {
                 updateViews(for: color)
             }
         }
@@ -236,8 +236,8 @@ public class MBProgressHUD: UIView {
         layer.allowsGroupOpacity = false
         
         setupViews()
-        updateIndicators()
         registerForNotifications()
+        updateIndicators()
     }
     
     deinit {
@@ -501,14 +501,16 @@ public class MBProgressHUD: UIView {
         indicator?.setContentCompressionResistancePriority(.init(998), for: .horizontal)
         indicator?.setContentCompressionResistancePriority(.init(998), for: .vertical)
         
-        updateViews(for: contentColor ?? UIColor.white)
+        if label != nil {
+            updateViews(for: contentColor ?? UIColor.white)
+        }
         setNeedsUpdateConstraints()
     }
     
     private func updateViews(for color: UIColor) {
-        label.textColor = color
-        detailsLabel.textColor = color
-        button.setTitleColor(color, for: .normal)
+        label?.textColor = color
+        detailsLabel?.textColor = color
+        button?.setTitleColor(color, for: .normal)
         
         if let activityIndicator = indicator as? UIActivityIndicatorView {
             activityIndicator.color = color
@@ -1317,4 +1319,3 @@ extension UIViewController {
  hud.hide(animated: true, afterDelay: 2.0)
  
  */
-#endif
